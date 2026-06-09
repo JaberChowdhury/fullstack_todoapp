@@ -1,0 +1,13 @@
+{
+  "tableName": "deletedTodos",
+  "columns": [
+    "id",
+    "userId",
+    "title",
+    "description",
+    "createdAt",
+    "updatedAt",
+    "isComplete"
+  ],
+  "data": []
+}

@@ -1,0 +1,59 @@
+{
+  "tableName": "users",
+  "columns": [
+    "id",
+    "name",
+    "email",
+    "password",
+    "createdAt",
+    "age",
+    "location"
+  ],
+  "data": [
+    {
+      "id": "9bc8a891-8a2c-4773-99e4-1c24afdc99a0",
+      "name": "Angeline Leffler",
+      "email": "Ludwig.Bode@gmail.com",
+      "password": "dsHCqDsClIzAcyp",
+      "createdAt": "2025-07-12T04:21:28.002Z",
+      "age": 42,
+      "location": "Josiestad"
+    },
+    {
+      "id": "f45e821e-8e1a-40a9-ab3e-32fc36f56dfa",
+      "name": "Karli Schroeder",
+      "email": "Caleigh.Welch@yahoo.com",
+      "password": "g__YAvSnu_Dh5Vk",
+      "createdAt": "2025-09-27T12:47:35.110Z",
+      "age": 55,
+      "location": "North Leona"
+    },
+    {
+      "id": "edd70213-ca05-4b51-94dd-d30538881439",
+      "name": "Sylvia Pagac",
+      "email": "Garrett.Kreiger80@gmail.com",
+      "password": "6MoI3lqFWuyXx_D",
+      "createdAt": "2026-02-02T19:11:15.107Z",
+      "age": 28,
+      "location": "Miketon"
+    },
+    {
+      "id": "79f10299-bcb4-486b-8a05-d414768bbf84",
+      "name": "Krystel Haley",
+      "email": "Idell.Kunze60@yahoo.com",
+      "password": "opy4HKO6KEWB0Sb",
+      "createdAt": "2026-05-06T00:47:21.344Z",
+      "age": 45,
+      "location": "Jerdeland"
+    },
+    {
+      "id": "4148aace-c335-44fe-92a0-1931bfa0693c",
+      "name": "Britney Ondricka",
+      "email": "Celia32@yahoo.com",
+      "password": "sDhPAtvUHfv76LQ",
+      "createdAt": "2025-09-12T18:16:50.159Z",
+      "age": 47,
+      "location": "Aishaworth"
+    }
+  ]
+}

@@ -1,15 +1,16 @@
 {
   "scripts": {
-    "build": "bun build --minify ./src/index.ts --outdir ./dist",
-    "dev:server": "bun --watch /src/index.ts",
-    "dev:db": "bun --watch /src/library/database/index.ts",
-    "start": "bun /dist/index.js"
+    "build": "bun build --target=bun --minify ./src/index.ts --outdir ./dist",
+    "dev:server": "bun --watch src/index.ts",
+    "dev:db": "bun --watch src/library/database/index.ts",
+    "start": "bun dist/index.js"
   },
   "name": "fullstack_todoapp",
   "module": "index.ts",
   "type": "module",
   "private": true,
   "devDependencies": {
+    "@faker-js/faker": "^10.4.0",
     "@types/bun": "latest"
   },
   "peerDependencies": {

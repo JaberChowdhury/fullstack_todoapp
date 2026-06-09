@@ -5,9 +5,7 @@ import folderexist from "../lib/folderexist";
 import type { Database } from "../scheme/scheme";
 
 const init = async (dbScheme: Database): Promise<void> => {
-  const currentPath = import.meta.dir;
-
-  const rootDbsPath = join(currentPath, "dbs");
+  const rootDbsPath = join(process.cwd(), "dbs");
   const dbPath = join(rootDbsPath, dbScheme.databaseName);
 
   // Ensure root dbs folder exists
@@ -39,16 +37,15 @@ const init = async (dbScheme: Database): Promise<void> => {
     if (!tableExists) {
       await Bun.write(
         tablePath,
-        // JSON.stringify(
-        //   {
-        //     tableName: table.name,
-        //     columns: table.cols,
-        //     data: [],
-        //   },
-        //   null,
-        //   2,
-        // ),
-        "",
+        JSON.stringify(
+          {
+            tableName: table.name,
+            columns: table.cols,
+            data: [],
+          },
+          null,
+          2,
+        ),
       );
 
       console.info(`Table '${table.name}' created`);

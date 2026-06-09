@@ -2,7 +2,7 @@ import app from "./app";
 import { filedb } from "./library/database";
 
 export default {
-  port: 3000,
+  port: 3001,
   fetch: app.fetch,
 };
 

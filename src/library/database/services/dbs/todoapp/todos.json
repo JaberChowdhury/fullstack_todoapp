@@ -1,0 +1,131 @@
+{
+  "tableName": "todos",
+  "columns": [
+    "id",
+    "userId",
+    "title",
+    "description",
+    "createdAt",
+    "updatedAt",
+    "isComplete"
+  ],
+  "data": [
+    {
+      "id": "998a078a-c68f-4156-808b-2e8dfccef4fd",
+      "userId": "9bc8a891-8a2c-4773-99e4-1c24afdc99a0",
+      "title": "Celo molestiae adimpleo.",
+      "description": "Carpo ver audacia vociferor vulgo defungo curriculum aeternus umerus. Voluptate cervus creator. Vespillo careo subnecto molestias clamo vilis centum ustilo eaque soleo.",
+      "createdAt": "2026-02-12T04:11:43.046Z",
+      "updatedAt": "2026-06-08T19:23:25.800Z",
+      "isComplete": false
+    },
+    {
+      "id": "cc4a2afe-e3ef-4f5c-90b9-e3b7816c2092",
+      "userId": "9bc8a891-8a2c-4773-99e4-1c24afdc99a0",
+      "title": "Unde compono acidus terreo campana.",
+      "description": "Quas reiciendis alius repudiandae auxilium. Deputo amicitia acsi acervus. Volo caecus appono ante.",
+      "createdAt": "2025-06-25T16:50:20.635Z",
+      "updatedAt": "2026-06-08T19:47:58.324Z",
+      "isComplete": true
+    },
+    {
+      "id": "acbc01ef-3400-4010-91f6-f30d66fc898f",
+      "userId": "f45e821e-8e1a-40a9-ab3e-32fc36f56dfa",
+      "title": "Tricesimus altus maiores constans.",
+      "description": "Odio voluptate vita. Annus velociter tui verbera territo sperno fuga validus truculenter. Tutamen vesco ustulo dolorem suscipit angulus vergo vinitor congregatio.",
+      "createdAt": "2026-01-11T00:18:35.255Z",
+      "updatedAt": "2026-06-09T04:51:00.988Z",
+      "isComplete": false
+    },
+    {
+      "id": "941235c8-c40e-4a5d-8709-339ff90312c8",
+      "userId": "f45e821e-8e1a-40a9-ab3e-32fc36f56dfa",
+      "title": "Nisi ago confugo abeo.",
+      "description": "Dapifer aduro cuppedia viscus aer trucido aut sodalitas saepe conservo. Contigo adfero cursim cupio magni desparatus. Curvo dedico cursim sophismata desino.",
+      "createdAt": "2026-05-28T03:11:26.488Z",
+      "updatedAt": "2026-06-08T22:52:57.316Z",
+      "isComplete": false
+    },
+    {
+      "id": "59cf1ab6-15d6-49b8-b922-6e1a4a5b3713",
+      "userId": "edd70213-ca05-4b51-94dd-d30538881439",
+      "title": "Coaegresco coruscus campana volubilis abduco curriculum.",
+      "description": "Crustulum verus corporis cerno veritatis benigne stillicidium arto. Vaco thermae celo neque. Suscipio corrupti quas.",
+      "createdAt": "2026-04-21T21:42:20.349Z",
+      "updatedAt": "2026-06-09T06:20:44.332Z",
+      "isComplete": false
+    },
+    {
+      "id": "5de62540-bb9d-4694-8ddb-53cd2df075c8",
+      "userId": "edd70213-ca05-4b51-94dd-d30538881439",
+      "title": "Odio benevolentia chirographum amo cuppedia.",
+      "description": "Similique claudeo suadeo degusto crapula officiis turpis acies abundans. Triduana tergum deinde speculum adeptio annus sponte defluo attollo studio. Quisquam stabilis in torrens.",
+      "createdAt": "2025-08-08T18:37:18.988Z",
+      "updatedAt": "2026-06-08T23:37:18.209Z",
+      "isComplete": true
+    },
+    {
+      "id": "06d2b2de-a289-4d8c-85fa-b30a6cc04483",
+      "userId": "edd70213-ca05-4b51-94dd-d30538881439",
+      "title": "Demoror sophismata crinis advoco eum.",
+      "description": "Conqueror demum terminatio nam tersus. Curis ars vesper peccatus compono. Verbum architecto laboriosam desolo contabesco cito decens communis congregatio certus.",
+      "createdAt": "2026-03-16T12:28:01.493Z",
+      "updatedAt": "2026-06-09T07:39:51.441Z",
+      "isComplete": false
+    },
+    {
+      "id": "86fada60-0789-4dc9-bd02-4efd5ebe704a",
+      "userId": "79f10299-bcb4-486b-8a05-d414768bbf84",
+      "title": "Attollo aequitas ambulo tutamen.",
+      "description": "Amicitia suadeo labore. Quia exercitationem deripio. Comburo aestas capio.",
+      "createdAt": "2025-09-16T09:29:36.327Z",
+      "updatedAt": "2026-06-09T12:56:02.339Z",
+      "isComplete": false
+    },
+    {
+      "id": "82a8e2a7-f372-436d-9b7b-ae3d2e917e47",
+      "userId": "79f10299-bcb4-486b-8a05-d414768bbf84",
+      "title": "Una curis atque summisse antiquus.",
+      "description": "Conturbo sponte sulum. Hic rerum culpa torrens dens. Conservo culpo deorsum vesper odit alter officiis.",
+      "createdAt": "2026-05-02T22:13:02.116Z",
+      "updatedAt": "2026-06-08T18:32:14.566Z",
+      "isComplete": false
+    },
+    {
+      "id": "c3d9e572-66c7-4c5a-93dc-e9cc5a8edeb0",
+      "userId": "79f10299-bcb4-486b-8a05-d414768bbf84",
+      "title": "Abbas tibi tunc desino calamitas.",
+      "description": "Subiungo clibanus teres aequitas defendo avarus amplus degenero solus peccatus. Surgo vulnero quae voluptate amissio debitis. Placeat sapiente verto curia trepide surgo audio tam.",
+      "createdAt": "2025-09-12T07:06:28.948Z",
+      "updatedAt": "2026-06-09T06:25:03.943Z",
+      "isComplete": false
+    },
+    {
+      "id": "f8bd72a7-f407-4b21-ae8d-21024987ff37",
+      "userId": "4148aace-c335-44fe-92a0-1931bfa0693c",
+      "title": "Urbs deprecator suadeo ceno tantum.",
+      "description": "Calculus studio vitae culpo cohibeo trado abutor infit unde teres. Depono crapula vobis aegre vespillo ulciscor. Auctor adeo vester vulgus vicinus cubitum rerum crur officiis.",
+      "createdAt": "2026-02-20T06:36:32.940Z",
+      "updatedAt": "2026-06-09T08:37:44.030Z",
+      "isComplete": true
+    },
+    {
+      "id": "588984ac-7209-45a9-86b1-15fd0f6087f4",
+      "userId": "4148aace-c335-44fe-92a0-1931bfa0693c",
+      "title": "Trucido ulciscor amplexus dicta.",
+      "description": "Nobis libero sollers spiculum defessus tamquam vociferor. Vae deinde aduro subvenio. Bibo aspernatur defungo.",
+      "createdAt": "2025-09-11T14:47:32.525Z",
+      "updatedAt": "2026-06-08T17:57:33.348Z",
+      "isComplete": true
+    },
+    {
+      "id": "a8e8fb7f-f896-4706-be0b-aa10362a8e17",
+      "userId": "4148aace-c335-44fe-92a0-1931bfa0693c",
+      "title": "Audacia crebro dolore.",
+      "description": "Aequus balbus cado inflammatio volup abbas spero dignissimos cubitum. Vinitor undique officiis delinquo est doloribus bellicus tenuis cenaculum correptius. Cito tabula amita voluptate dicta cauda aveho talio incidunt.",
+      "createdAt": "2025-12-31T09:37:00.675Z",
+      "updatedAt": "2026-06-09T02:37:15.115Z",
+      "isComplete": true
+    }
+  ]
+}

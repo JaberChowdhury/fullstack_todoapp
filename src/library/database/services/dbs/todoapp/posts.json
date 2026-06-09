@@ -1,0 +1,11 @@
+{
+  "tableName": "posts",
+  "columns": [
+    "id",
+    "userid",
+    "title",
+    "descriptions",
+    "createdat"
+  ],
+  "data": []
+}
