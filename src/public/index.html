@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Todo App</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <style>
+            [v-cloak] {
+                display: none;
+            }
+        </style>
+    </head>
+
+    <body
+        class="bg-base-200 min-h-screen font-sans text-base-content antialiased"
+    >
+        <!-- App Container -->
+        <div id="app" class="container mx-auto p-4 max-w-4xl pt-10">
+            <!-- Toast Notifications -->
+            <div id="toast" class="toast toast-top toast-center z-50 hidden">
+                <div class="alert alert-error">
+                    <span id="toast-msg"></span>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div id="loading" class="flex justify-center items-center h-64">
+                <span
+                    class="loading loading-spinner loading-lg text-primary"
+                ></span>
+            </div>
+
+            <!-- Login View -->
+            <div
+                id="login-view"
+                class="hidden flex-col items-center justify-center pt-10"
+            >
+                <div
+                    class="card w-full max-w-md bg-base-100 shadow-xl border border-base-300"
+                >
+                    <div class="card-body">
+                        <h2
+                            class="card-title text-2xl font-bold mb-4 text-center justify-center"
+                        >
+                            Welcome Back
+                        </h2>
+                        <p
+                            class="text-sm text-center text-base-content/70 mb-4"
+                        >
+                            Please log in to manage your todos.
+                        </p>
+                        <form id="login-form">
+                            <div class="form-control w-full mb-4">
+                                <label class="label"
+                                    ><span class="label-text font-medium"
+                                        >Email</span
+                                    ></label
+                                >
+                                <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="john@example.com"
+                                    class="input input-bordered w-full"
+                                    required
+                                />
+                            </div>
+                            <div class="form-control w-full mb-6">
+                                <label class="label"
+                                    ><span class="label-text font-medium"
+                                        >Password</span
+                                    ></label
+                                >
+                                <input
+                                    type="password"
+                                    id="password"
+                                    placeholder="••••••••"
+                                    class="input input-bordered w-full"
+                                    required
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                class="btn btn-primary w-full"
+                            >
+                                Sign In
+                            </button>
+                        </form>
+                        <div class="divider">OR</div>
+                        <button
+                            onclick="seedDatabase()"
+                            class="btn btn-outline btn-secondary w-full"
+                        >
+                            Seed Database (Fake Data)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard View -->
+            <div id="dashboard-view" class="hidden">
+                <!-- Navbar -->
+                <div
+                    class="navbar bg-base-100 shadow-sm rounded-box mb-8 border border-base-300 px-4"
+                >
+                    <div class="flex-1">
+                        <span
+                            class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+                            >TaskMaster</span
+                        >
+                    </div>
+                    <div class="flex-none gap-4 items-center">
+                        <span
+                            class="text-sm font-medium"
+                            id="user-greeting"
+                        ></span>
+                        <button
+                            onclick="logout()"
+                            class="btn btn-sm btn-ghost text-error"
+                        >
+                            Logout
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Content Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Create Todo Form -->
+                    <div class="md:col-span-1">
+                        <div
+                            class="card bg-base-100 shadow-sm border border-base-300 sticky top-4"
+                        >
+                            <div class="card-body p-6">
+                                <h3 class="card-title text-lg mb-4">
+                                    New Task
+                                </h3>
+                                <form id="todo-form">
+                                    <div class="form-control w-full mb-3">
+                                        <input
+                                            type="text"
+                                            id="todo-title"
+                                            placeholder="Task title"
+                                            class="input input-bordered w-full"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-control w-full mb-4">
+                                        <textarea
+                                            id="todo-desc"
+                                            class="textarea textarea-bordered h-24"
+                                            placeholder="Task description"
+                                        ></textarea>
+                                    </div>
+                                    <button
+                                        type="submit"
+                                        class="btn btn-primary w-full"
+                                    >
+                                        Add Task
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Todos List -->
+                    <div
+                        class="md:col-span-2 flex flex-col gap-4"
+                        id="todos-container"
+                    >
+                        <!-- Todos will be injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Elements
+            const loginView = document.getElementById("login-view");
+            const dashboardView = document.getElementById("dashboard-view");
+            const loadingView = document.getElementById("loading");
+            const loginForm = document.getElementById("login-form");
+            const todoForm = document.getElementById("todo-form");
+            const todosContainer = document.getElementById("todos-container");
+            const userGreeting = document.getElementById("user-greeting");
+            const toast = document.getElementById("toast");
+            const toastMsg = document.getElementById("toast-msg");
+
+            let currentUser = null;
+
+            // Show Toast
+            const showToast = (msg, isError = true) => {
+                toastMsg.textContent = msg;
+                toast.querySelector(".alert").className =
+                    `alert ${isError ? "alert-error" : "alert-success"}`;
+                toast.classList.remove("hidden");
+                setTimeout(() => toast.classList.add("hidden"), 3000);
+            };
+
+            // View Management
+            const showView = (view) => {
+                loadingView.classList.add("hidden");
+                loginView.classList.add("hidden");
+                dashboardView.classList.add("hidden");
+                if (view === "login") loginView.classList.remove("hidden");
+                if (view === "dashboard")
+                    dashboardView.classList.remove("hidden");
+            };
+
+            // API Helpers
+            const api = async (endpoint, options = {}) => {
+                const res = await fetch(endpoint, {
+                    ...options,
+                    headers: {
+                        "Content-Type": "application/json",
+                        ...(options.headers || {}),
+                    },
+                });
+                const data = await res.json().catch(() => ({}));
+                if (!res.ok) throw new Error(data.error || "API Error");
+                return data;
+            };
+
+            // Auth flows
+            const checkAuth = async () => {
+                try {
+                    const data = await api("/api/auth/me");
+                    currentUser = data.user;
+                    userGreeting.textContent = `Hello, ${currentUser.name}`;
+                    showView("dashboard");
+                    fetchTodos();
+                } catch (err) {
+                    showView("login");
+                }
+            };
+
+            const login = async (e) => {
+                e.preventDefault();
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+
+                loadingView.classList.remove("hidden");
+                loginView.classList.add("hidden");
+
+                try {
+                    await api("/api/auth/login", {
+                        method: "POST",
+                        body: JSON.stringify({ email, password }),
+                    });
+                    await checkAuth();
+                } catch (err) {
+                    showToast(err.message);
+                    showView("login");
+                }
+            };
+
+            const logout = async () => {
+                try {
+                    await api("/api/auth/logout", { method: "POST" });
+                    currentUser = null;
+                    showView("login");
+                } catch (err) {
+                    showToast(err.message);
+                }
+            };
+
+            const seedDatabase = async () => {
+                try {
+                    await fetch("/seed");
+                    showToast(
+                        "Database seeded! Please log in using one of the generated emails in dbs/todoapp/users.json.",
+                        false,
+                    );
+                } catch (err) {
+                    showToast("Failed to seed database.");
+                }
+            };
+
+            // Todos flows
+            const fetchTodos = async () => {
+                try {
+                    const todos = await api("/api/todos");
+                    renderTodos(todos);
+                } catch (err) {
+                    showToast("Failed to load todos");
+                }
+            };
+
+            const createTodo = async (e) => {
+                e.preventDefault();
+                const title = document.getElementById("todo-title").value;
+                const description = document.getElementById("todo-desc").value;
+
+                try {
+                    await api("/api/todos", {
+                        method: "POST",
+                        body: JSON.stringify({ title, description }),
+                    });
+                    document.getElementById("todo-title").value = "";
+                    document.getElementById("todo-desc").value = "";
+                    fetchTodos();
+                } catch (err) {
+                    showToast(err.message);
+                }
+            };
+
+            const toggleTodo = async (id, currentStatus) => {
+                try {
+                    await api(`/api/todos/${id}`, {
+                        method: "PUT",
+                        body: JSON.stringify({ isComplete: !currentStatus }),
+                    });
+                    fetchTodos();
+                } catch (err) {
+                    showToast(err.message);
+                }
+            };
+
+            const deleteTodo = async (id) => {
+                if (!confirm("Are you sure you want to delete this task?"))
+                    return;
+                try {
+                    await api(`/api/todos/${id}`, { method: "DELETE" });
+                    fetchTodos();
+                } catch (err) {
+                    showToast(err.message);
+                }
+            };
+
+            // Rendering
+            const renderTodos = (todos) => {
+                todosContainer.innerHTML = "";
+                if (todos.length === 0) {
+                    todosContainer.innerHTML = `
+          <div class="text-center py-10 text-base-content/50 border-2 border-dashed border-base-300 rounded-box">
+            <p>No tasks yet. Create one to get started!</p>
+          </div>
+        `;
+                    return;
+                }
+
+                // Sort by incomplete first, then by date
+                todos.sort((a, b) => {
+                    if (a.isComplete !== b.isComplete)
+                        return a.isComplete ? 1 : -1;
+                    return new Date(b.createdAt) - new Date(a.createdAt);
+                });
+
+                todos.forEach((todo) => {
+                    const date = new Date(todo.createdAt).toLocaleDateString();
+                    const card = document.createElement("div");
+                    card.className = `card bg-base-100 shadow-sm border ${todo.isComplete ? "border-success/30 opacity-70" : "border-base-300"} transition-all hover:shadow-md`;
+                    card.innerHTML = `
+          <div class="card-body p-4 sm:p-6 flex-row gap-4 items-start">
+            <input type="checkbox" class="checkbox checkbox-primary mt-1" ${todo.isComplete ? "checked" : ""} onchange="toggleTodo('${todo.id}', ${todo.isComplete})" />
+            <div class="flex-1">
+              <h4 class="font-bold text-lg ${todo.isComplete ? "line-through text-base-content/60" : ""}">${escapeHtml(todo.title)}</h4>
+              ${todo.description ? `<p class="text-base-content/70 text-sm mt-1 mb-3">${escapeHtml(todo.description)}</p>` : '<div class="mb-3"></div>'}
+              <p class="text-xs text-base-content/40">Created: ${date}</p>
+            </div>
+            <button onclick="deleteTodo('${todo.id}')" class="btn btn-ghost btn-sm btn-circle text-error hover:bg-error/20">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+            </button>
+          </div>
+        `;
+                    todosContainer.appendChild(card);
+                });
+            };
+
+            const escapeHtml = (unsafe) => {
+                return (unsafe || "").replace(/[&<"']/g, function (m) {
+                    switch (m) {
+                        case "&":
+                            return "&amp;";
+                        case "<":
+                            return "&lt;";
+                        case '"':
+                            return "&quot;";
+                        default:
+                            return "&#039;";
+                    }
+                });
+            };
+
+            // Init
+            loginForm.addEventListener("submit", login);
+            todoForm.addEventListener("submit", createTodo);
+            checkAuth();
+        </script>
+    </body>
+</html>
