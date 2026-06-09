@@ -1,0 +1,23 @@
+{
+  "scripts": {
+    "build": "bun build --minify ./src/index.ts --outdir ./dist",
+    "dev:server": "bun --watch /src/index.ts",
+    "dev:db": "bun --watch /src/library/database/index.ts",
+    "start": "bun /dist/index.js"
+  },
+  "name": "fullstack_todoapp",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "hono": "^4.12.25",
+    "zod": "^4.4.3",
+    "zustand": "^5.0.14"
+  }
+}
